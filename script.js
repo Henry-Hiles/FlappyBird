@@ -1,10 +1,5 @@
 import { updateBird, setupBird, getBirdRect } from "./bird.js"
-import {
-    updatePipes,
-    setupPipes,
-    getPassedPipesCount,
-    getPipeRects,
-} from "./pipe.js"
+import { updatePipes, setupPipes, getPassedPipesCount, getPipeRects, } from "./pipe.js"
 
 const title = document.querySelector( "[data-title]" )
 const subtitle = document.querySelector( "[data-subtitle]" )
@@ -31,14 +26,7 @@ const checkLose = () => {
     return outsideWorld || insidePipe
 }
 
-const isCollision = ( rect1, rect2 ) => {
-    return (
-        rect1.left < rect2.right &&
-        rect1.top < rect2.bottom &&
-        rect1.right > rect2.left &&
-        rect1.bottom > rect2.top
-    )
-}
+const isCollision = ( rect1, rect2 ) => rect1.left < rect2.right && rect1.top < rect2.bottom && rect1.right > rect2.left && rect1.bottom > rect2.top
 
 const handleStart = () => {
     title.classList.add( "hide" )
