@@ -1,5 +1,5 @@
-import { updateBird, setupBird, getBirdRect } from "./bird.js"
-import { updatePipes, setupPipes, getPassedPipesCount, getPipeRects, } from "./pipe.js"
+import { getBirdRect, setupBird, updateBird } from "./bird.js"
+import { getPassedPipesCount, getPipeRects, setupPipes, updatePipes } from "./pipe.js"
 
 const title = document.querySelector( "[data-title]" )
 const subtitle = document.querySelector( "[data-subtitle]" )
@@ -39,10 +39,17 @@ const handleStart = () => {
 const handleLose = () => setTimeout( () => {
     title.classList.remove( "hide" )
     subtitle.classList.remove( "hide" )
-    console.log( !( !document.cookie ) )
-    const highscore = 0
-    subtitle.innerHTML = `Score: ${getPassedPipesCount()}<br />Highscore: ${highscore}`
-    document.addEventListener( "keypress", handleStart, { once: true } )
+
+    let highscore = parseFloat(localStorage.getItem('highscore')) 
+    const score = getPassedPipesCount()
+    if(!highscore || score > highscore) {
+        localStorage.setItem('highscore', score)
+        highscore = score;
+    }
+
+    subtitle.innerHTML = `Score: ${score}<br />Highscore: ${highscore}`
+    document.addEventListener( "keydown", handleStart, { once: true } )
 }, 100 )
 
+subtitle.innerHTML = `Highscore: ${parseFloat(localStorage.getItem('highscore')) || 0}`
 document.addEventListener( "keypress", handleStart, { once: true } )
