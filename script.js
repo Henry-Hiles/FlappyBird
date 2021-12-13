@@ -48,8 +48,10 @@ const handleLose = () => setTimeout( () => {
     }
 
     subtitle.innerHTML = `Score: ${score}<br />Highscore: ${highscore}`
-    document.addEventListener( "keydown", handleStart, { once: true } )
+    document.addEventListener( "keypress", handleStart, { once: true } )
+    document.addEventListener( "click", handleStart, { once: true } )
 }, 100 )
 
 subtitle.innerHTML = `Highscore: ${parseFloat(localStorage.getItem('highscore')) || 0}`
 document.addEventListener( "keypress", handleStart, { once: true } )
+document.addEventListener( "click", handleStart, { once: true } )

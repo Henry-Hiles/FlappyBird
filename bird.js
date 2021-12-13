@@ -9,13 +9,15 @@ const setTop = ( top ) => birdElem.style.setProperty( "--bird-top", top )
 const getTop = () => parseFloat( getComputedStyle( birdElem ).getPropertyValue( "--bird-top" ) )
 
 const handleJump = ( event ) => {
-    if ( event.code === "Space" ) timeSinceLastJump = 0
+    if ( event.code === "Space" || event.type == "click") timeSinceLastJump = 0
 }
 
 export const setupBird = () => {
     setTop( window.innerHeight / 2 )
     document.removeEventListener( "keydown", handleJump )
     document.addEventListener( "keydown", handleJump )
+    document.removeEventListener( "click", handleJump )
+    document.addEventListener( "click", handleJump )
 }
 
 export const updateBird = ( delta ) => {
